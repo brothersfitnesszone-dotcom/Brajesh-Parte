@@ -1,0 +1,64 @@
+# ===========================================
+# BRAJESH PARTE PORTFOLIO - VERCEL SETUP GUIDE
+# ===========================================
+# This guide helps you deploy your website with
+# Supabase (Database) and Cloudinary (Images).
+# ===========================================
+
+# ------------------------------------------
+# STEP 1: SUPABASE SETUP (Database)
+# ------------------------------------------
+# 1. Create account at https://supabase.com
+# 2. Creating a new project
+# 3. Go to "Project Settings" -> "API"
+# 4. Copy "Project URL" and "anon public" key
+# 5. Go to "SQL Editor" in the sidebar
+# 6. Copy contents of "supabase_schema.sql"
+# 7. Paste into SQL Editor and click "Run"
+
+# ------------------------------------------
+# STEP 2: CLOUDINARY SETUP (Images)
+# ------------------------------------------
+# 1. Create account at https://cloudinary.com
+# 2. Go to "Dashboard"
+# 3. Copy "Cloud Name", "API Key", "API Secret"
+
+# ------------------------------------------
+# STEP 3: ENVIRONMENT VARIABLES (.env)
+# ------------------------------------------
+# Create a .env.local file with these keys:
+#
+# NEXT_PUBLIC_SUPABASE_URL=your_project_url
+# NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+# SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+#
+# CLOUDINARY_CLOUD_NAME=your_cloud_name
+# CLOUDINARY_API_KEY=your_api_key
+# CLOUDINARY_API_SECRET=your_api_secret
+#
+# JWT_SECRET=random_secret_password_here
+
+# ------------------------------------------
+# STEP 4: DEPLOY TO VERCEL
+# ------------------------------------------
+# 1. Push code to GitHub
+# 2. Go to https://vercel.com/new
+# 3. Import your repository
+# 4. Add the Environment Variables from Step 3
+# 5. Click "Deploy"
+
+# ------------------------------------------
+# CREDENTIALS (Once set up)
+# ------------------------------------------
+# Default Admin Login:
+# Email: admin@brajeshparte.com
+# Password: CyberDiscipline2024!
+#
+# Note: First login will create the admin user
+# in Supabase automatically.
+
+# ------------------------------------------
+# SOCIAL LINKS (Configured)
+# ------------------------------------------
+# - WhatsApp/Phone: +91 8319219942
+# - Instagram: @welcomto_brj_city
