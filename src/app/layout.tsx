@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "Brajesh Parte | Elite Personal Training",
   description: "Optimizing human potential through disciplined training and expert guidance. Professional Personal Trainer based in Lakhnadon.",
   keywords: ["bodybuilder", "fitness", "personal training", "coaching", "Brajesh Parte", "Lakhnadon fitness"],
+  metadataBase: new URL('https://brajeshparte.com'),
   openGraph: {
     title: "Brajesh Parte | Elite Personal Training",
     description: "Optimizing human potential through disciplined training and expert guidance.",

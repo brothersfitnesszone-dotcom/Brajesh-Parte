@@ -12,7 +12,7 @@ const navItems = [
     { href: "#contact", label: "CONTACT" },
 ];
 
-export default function CyberNav() {
+export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
