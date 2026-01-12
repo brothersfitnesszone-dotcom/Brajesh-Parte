@@ -59,13 +59,13 @@ export default function Hero() {
     return (
         <section
             ref={containerRef}
-            className="relative h-[100dvh] flex items-center justify-center overflow-hidden bg-[#050505]"
+            className="relative h-[100dvh] flex items-center justify-center overflow-hidden bg-background"
         >
             {/* Background Gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/50 to-[#050505] z-10" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,255,0.05)_0%,transparent_70%)] z-0" />
 
-            <div className="relative z-20 text-center px-6 max-w-5xl mx-auto mt-20 md:mt-0">
+            <div className="relative z-20 text-center px-6 max-w-7xl mx-auto mt-20 md:mt-0">
 
                 {/* Location Badge */}
                 <div className="hero-reveal flex items-center justify-center gap-2 mb-8">

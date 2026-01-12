@@ -89,7 +89,7 @@ export default function Biometrics() {
         <section
             ref={sectionRef}
             id="biometrics"
-            className="relative py-24 px-6 md:px-20 bg-[#050505]"
+            className="relative py-24 md:py-32 px-6 md:px-20 bg-background"
         >
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-20">

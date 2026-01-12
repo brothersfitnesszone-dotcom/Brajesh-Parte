@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import TextScramble from "@/components/ui/TextScramble";
 
 const navItems = [
     { href: "#hero", label: "HOME" },
@@ -28,13 +29,16 @@ export default function Navbar() {
         <>
             {/* Top Navigation Bar */}
             <nav
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || mobileMenuOpen
-                    ? "glass-panel border-b-0 m-4 py-4 shadow-2xl" /* Floating Glass Island */
-                    : "bg-transparent py-6"
+                className={`fixed z-50 transition-all duration-500 ease-in-out ${scrolled || mobileMenuOpen
+                    ? "glass-panel border-b-0 py-4 shadow-2xl rounded-2xl" /* Floating Glass Island */
+                    : "bg-transparent py-6 rounded-none"
                     }`}
                 style={{
                     width: scrolled || mobileMenuOpen ? "calc(100% - 2rem)" : "100%",
-                    left: scrolled || mobileMenuOpen ? "1rem" : "0",
+                    maxWidth: "80rem", // max-w-7xl equivalent
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    top: scrolled || mobileMenuOpen ? "1rem" : "0",
                     backdropFilter: scrolled || mobileMenuOpen ? "blur(var(--glass-blur))" : "none"
                 }}
             >
@@ -67,7 +71,9 @@ export default function Navbar() {
                                 href={item.href}
                                 className="text-xs font-display font-medium text-gray-400 hover:text-white transition-colors tracking-[0.2em] uppercase relative group"
                             >
-                                <span className="relative z-10">{item.label}</span>
+                                <span className="relative z-10">
+                                    <TextScramble>{item.label}</TextScramble>
+                                </span>
                                 <span className="absolute bottom-[-4px] left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-300 ease-out" />
                             </Link>
                         ))}
@@ -80,21 +86,23 @@ export default function Navbar() {
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <button
-                        className="md:hidden text-white p-2 hover:bg-white/5 rounded-full transition-colors"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        aria-label="Toggle menu"
-                    >
-                        <span className="material-symbols-outlined text-2xl">
-                            {mobileMenuOpen ? "close" : "menu"}
-                        </span>
-                    </button>
+                    <div className="relative md:hidden">
+                        <button
+                            className="text-white p-2 hover:bg-white/5 rounded-full transition-colors relative z-10"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            <span className="material-symbols-outlined text-2xl">
+                                {mobileMenuOpen ? "close" : "menu"}
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </nav>
 
             {/* Mobile Menu Overlay */}
             <div
-                className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl transition-all duration-500 md:hidden flex items-center justify-center ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+                className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl transition-all duration-500 md:hidden flex flex-col items-center justify-start pt-32 ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                     }`}
             >
                 <div className="flex flex-col items-center gap-8 p-6 text-center">

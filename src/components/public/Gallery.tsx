@@ -135,10 +135,10 @@ export default function Gallery() {
             <section
                 ref={sectionRef}
                 id="visuals"
-                className="relative py-24 px-6 md:px-20 bg-[#050505]"
+                className="relative py-24 md:py-32 px-6 md:px-20 bg-background"
             >
                 {/* Background Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505] z-10 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background z-10 pointer-events-none" />
 
                 <div className="max-w-7xl mx-auto relative z-20">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -147,7 +147,7 @@ export default function Gallery() {
                                 TRANSFORMATION GALLERY
                             </TextReveal>
                             <div className="h-1 w-20 bg-primary rounded-full mb-4" />
-                            <p className="font-body text-gray-400 max-w-md text-sm md:text-base">
+                            <p className="font-body text-gray-300 max-w-md text-sm md:text-base leading-relaxed">
                                 Real people. Real results. A collection of physique transformations and dedication.
                             </p>
                         </div>
@@ -180,10 +180,18 @@ export default function Gallery() {
 
                     {loading ? (
                         <div className="flex items-center justify-center py-32">
-                            <div className="flex flex-col items-center gap-4">
-                                <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-                                <div className="text-gray-500 font-mono text-xs tracking-widest animate-pulse">
-                                    LOADING GALLERY...
+                            <div className="flex flex-col items-center gap-6">
+                                {/* Cyber/Biometric Loader */}
+                                <div className="relative w-24 h-24 flex items-center justify-center">
+                                    <div className="absolute inset-0 border-t-2 border-primary rounded-full animate-spin" />
+                                    <div className="absolute inset-2 border-r-2 border-accent-magenta/50 rounded-full animate-spin duration-[3s]" />
+                                    <div className="absolute inset-4 border-b-2 border-white/20 rounded-full animate-pulse" />
+                                    <span className="font-mono text-xs text-primary animate-pulse">Scanning</span>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                    <div className="text-gray-400 font-mono text-xs tracking-[0.3em] animate-pulse">
+                                        DECRYPTING DATA...
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -205,7 +213,6 @@ export default function Gallery() {
                             }
                         >
                             {images.map((image, index) => {
-                                const colorClass = colors[index % colors.length];
                                 return (
                                     <div
                                         key={image.id}
@@ -217,29 +224,32 @@ export default function Gallery() {
                                     >
                                         {/* Image wrapper */}
                                         <div
-                                            className={`relative overflow-hidden ${viewMode === "grid"
-                                                ? "w-full h-full"
-                                                : "w-32 h-32 rounded-lg flex-shrink-0"
-                                                }`}
+                                            className={`relative group ${index % 3 === 0 && viewMode === "grid" ? "md:col-span-2 md:row-span-2 aspect-square" : "aspect-square w-full h-full"
+                                                } overflow-hidden rounded-2xl cursor-pointer`}
                                         >
                                             <Image
                                                 src={image.imageUrl}
-                                                alt={image.caption || "Physique image"}
+                                                alt={image.caption || "Gallery image"}
                                                 fill
-                                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                                className="object-cover transition-transform duration-700 group-hover:scale-105"
                                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                loading="lazy"
                                             />
 
-                                            {/* Gradient Overlay (Grid only) */}
-                                            {viewMode === "grid" && (
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300" />
-                                            )}
+                                            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                <span className="font-display font-bold text-white text-xl tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                                    VIEW
+                                                </span>
+                                            </div>
                                         </div>
+
+                                        {/* Gradient Overlay (Grid only) */}
+                                        {viewMode === "grid" && (
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300 pointer-events-none" />
+                                        )}
 
                                         {/* Content - Grid Mode */}
                                         {viewMode === "grid" && (
-                                            <div className="absolute inset-0 p-6 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                            <div className="absolute inset-0 p-6 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
                                                 <div className="w-8 h-1 bg-primary mb-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100 origin-left" />
                                                 <p className="font-mono text-[10px] text-primary mb-1 tracking-widest uppercase">
                                                     IMG_{String(image.id).padStart(3, "0")}
@@ -272,87 +282,103 @@ export default function Gallery() {
                         </div>
                     )}
                 </div>
-            </section>
+            </section >
 
             {/* Fullscreen Lightbox */}
-            {lightboxOpen && images.length > 0 && (
-                <div
-                    className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center"
-                    onClick={closeLightbox}
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
-                >
-                    {/* Close button */}
-                    <button
-                        className="absolute top-4 right-4 z-10 w-12 h-12 flex items-center justify-center text-white hover:text-primary transition-colors"
-                        onClick={closeLightbox}
-                    >
-                        <span className="material-symbols-outlined text-3xl">close</span>
-                    </button>
-
-                    {/* Navigation arrows */}
-                    {images.length > 1 && (
-                        <>
-                            <button
-                                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center text-white hover:text-primary transition-colors bg-black/50 rounded-full"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    prevImage();
-                                }}
-                            >
-                                <span className="material-symbols-outlined text-3xl">
-                                    chevron_left
-                                </span>
-                            </button>
-                            <button
-                                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center text-white hover:text-primary transition-colors bg-black/50 rounded-full"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    nextImage();
-                                }}
-                            >
-                                <span className="material-symbols-outlined text-3xl">
-                                    chevron_right
-                                </span>
-                            </button>
-                        </>
-                    )}
-
-                    {/* Image */}
+            {
+                lightboxOpen && images.length > 0 && (
                     <div
-                        className="relative w-full h-full max-w-5xl max-h-[80vh] mx-4"
-                        onClick={(e) => e.stopPropagation()}
+                        className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center"
+                        onClick={closeLightbox}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
                     >
-                        <Image
-                            src={images[currentImageIndex].imageUrl}
-                            alt={images[currentImageIndex].caption || "Physique image"}
-                            fill
-                            className="object-contain"
-                            priority
-                        />
-                    </div>
 
-                    {/* Caption */}
-                    <div className="absolute bottom-8 left-0 right-0 text-center">
-                        <p className="text-primary font-mono text-sm mb-2">
-                            {currentImageIndex + 1} / {images.length}
-                        </p>
-                        <p className="text-white font-display text-xl">
-                            {images[currentImageIndex].caption || ""}
-                        </p>
-                        <p className="text-gray-500 font-mono text-xs mt-2">
-                            {new Date(images[currentImageIndex].createdAt).toLocaleDateString()}
-                        </p>
-                    </div>
 
-                    {/* Swipe hint on mobile */}
-                    <div className="absolute bottom-4 left-0 right-0 text-center md:hidden">
-                        <p className="text-gray-500 font-mono text-xs">
-                            ← SWIPE TO NAVIGATE →
-                        </p>
+                        {/* Navigation arrows */}
+                        {images.length > 1 && (
+                            <>
+                                <button
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center text-white hover:text-primary transition-colors bg-black/50 rounded-full"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        prevImage();
+                                    }}
+                                >
+                                    <span className="material-symbols-outlined text-3xl">
+                                        chevron_left
+                                    </span>
+                                </button>
+                                <button
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center text-white hover:text-primary transition-colors bg-black/50 rounded-full"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        nextImage();
+                                    }}
+                                >
+                                    <span className="material-symbols-outlined text-3xl">
+                                        chevron_right
+                                    </span>
+                                </button>
+                            </>
+                        )}
+
+                        {/* Image Container with Glow and Controls */}
+                        <div
+                            className="relative relative-group max-w-5xl max-h-[80vh] mx-4"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {/* Glowing Animated Border Container */}
+                            <div className="relative rounded-lg overflow-hidden ring-1 ring-white/10 shadow-[0_0_50px_-10px_rgba(0,243,255,0.3)] animate-pulse-slow group">
+                                {/* The Glow Effect Layer */}
+                                <div className="absolute inset-0 z-0 bg-primary/20 blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
+
+                                {/* Animated Border Gradient */}
+                                <div className="absolute inset-0 z-10 rounded-lg p-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-50 bg-[length:200%_auto] animate-shimmer" />
+
+                                <div className="relative z-20 bg-black rounded-lg overflow-hidden">
+                                    <Image
+                                        src={images[currentImageIndex].imageUrl}
+                                        alt={images[currentImageIndex].caption || "Physique image"}
+                                        width={1200}
+                                        height={800}
+                                        className="object-contain max-h-[75vh] w-auto h-auto"
+                                        priority
+                                    />
+
+                                    {/* Close Button - Overlay Top Right */}
+                                    <button
+                                        className="absolute top-4 right-4 z-50 w-8 h-8 flex items-center justify-center text-white bg-black/40 backdrop-blur-md rounded-full border border-white/10 hover:bg-red-500/80 hover:border-red-500 hover:text-white transition-all duration-300 group/btn"
+                                        onClick={closeLightbox}
+                                    >
+                                        <span className="material-symbols-outlined text-lg group-hover/btn:rotate-90 transition-transform">close</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Caption */}
+                        <div className="absolute bottom-8 left-0 right-0 text-center">
+                            <p className="text-primary font-mono text-sm mb-2">
+                                {currentImageIndex + 1} / {images.length}
+                            </p>
+                            <p className="text-white font-display text-xl">
+                                {images[currentImageIndex].caption || ""}
+                            </p>
+                            <p className="text-gray-500 font-mono text-xs mt-2">
+                                {new Date(images[currentImageIndex].createdAt).toLocaleDateString()}
+                            </p>
+                        </div>
+
+                        {/* Swipe hint on mobile */}
+                        <div className="absolute bottom-4 left-0 right-0 text-center md:hidden">
+                            <p className="text-gray-500 font-mono text-xs">
+                                ← SWIPE TO NAVIGATE →
+                            </p>
+                        </div>
                     </div>
-                </div>
-            )}
+                )
+            }
         </>
     );
 }

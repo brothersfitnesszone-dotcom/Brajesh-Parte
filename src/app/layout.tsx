@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
+import ScrollProgressRing from "@/components/ui/ScrollProgressRing";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -58,6 +59,8 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${inter.variable} font-body bg-[#050505] text-white selection:bg-primary selection:text-black`}
       >
+        <ScrollProgressRing />
+        <div className="fixed inset-0 pointer-events-none z-[60] bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] mix-blend-multiply" />
         <div className="grain-overlay" aria-hidden="true" />
 
         {/* Children */}

@@ -86,7 +86,7 @@ export default function TrainingProtocol() {
         <section
             ref={sectionRef}
             id="protocol"
-            className="relative py-32 px-6 md:px-20 bg-[#050505] overflow-hidden"
+            className="relative py-24 md:py-32 px-6 md:px-20 bg-background overflow-hidden"
         >
             {/* Background Elements */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />

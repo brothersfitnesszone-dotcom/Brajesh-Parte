@@ -71,7 +71,7 @@ export default function Footer() {
             id="contact"
             className="relative py-24 px-6 md:px-20 border-t border-white/5 bg-black"
         >
-            <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+            <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
                 <span className="footer-reveal font-mono text-primary text-xs tracking-[0.3em] mb-4">
                     GET IN TOUCH
                 </span>
@@ -120,7 +120,7 @@ export default function Footer() {
             </div>
 
             {/* Footer Bottom */}
-            <div className="max-w-5xl mx-auto mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-600 font-mono gap-4 text-center md:text-left tracking-widest uppercase">
+            <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-600 font-mono gap-4 text-center md:text-left tracking-widest uppercase">
                 <div>© {new Date().getFullYear()} Brajesh Parte. All rights reserved.</div>
                 <div className="text-gray-700">
                     LAKHNADON • PERSONAL TRAINER

@@ -4,7 +4,7 @@
   --color-primary: #00ffff;
   --color-accent-magenta: #ff00ff;
   --color-accent-green: #00ff00;
-  --color-background-dark: #0a0a0a;
+  --color-background: #050505;
   --color-panel-dark: #0f1214;
 
   --font-display: var(--font-orbitron), "Space Grotesk", sans-serif;
@@ -29,7 +29,7 @@ html {
 }
 
 body {
-  background-color: var(--color-background-dark);
+  background-color: var(--color-background);
   color: #ffffff;
   font-family: var(--font-body);
   overflow-x: hidden;
@@ -163,6 +163,38 @@ body {
   }
 }
 
+/* Premium Animations */
+.animate-shimmer {
+  animation: shimmer 1s linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-border 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes pulse-border {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px -5px rgba(0, 243, 255, 0.3);
+    border-color: rgba(0, 243, 255, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px -5px rgba(0, 243, 255, 0.6);
+    border-color: rgba(0, 243, 255, 0.8);
+  }
+}
 
 
 /* Terminal Style */
