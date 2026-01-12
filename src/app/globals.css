@@ -54,6 +54,32 @@ body {
   transform: translateZ(0);
 }
 
+/* 💎 ELITE VISUALS */
+
+/* Luxury Tracking */
+.tracking-luxury {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+/* Beveled Glass Panel */
+.glass-panel {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* Subtle bevel */
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.1),
+    inset 0 0 20px rgba(255, 255, 255, 0.02);
+  /* Inner glow */
+  border-radius: 12px;
+}
+
+/* 3D Transform Style */
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
 ::selection {
   background-color: var(--color-primary);
   color: var(--color-background-dark);

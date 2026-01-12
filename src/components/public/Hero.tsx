@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
+import TextReveal from "@/components/ui/TextReveal";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -77,8 +79,10 @@ export default function Hero() {
                 </div>
 
                 {/* Subtitle */}
-                <h2 className="hero-reveal text-primary font-display font-medium text-sm md:text-lg tracking-[0.3em] mb-4 uppercase">
-                    Elite Personal Training
+                <h2 className="mb-4">
+                    <TextReveal className="text-primary font-display font-medium text-sm md:text-lg tracking-luxury">
+                        Elite Personal Training
+                    </TextReveal>
                 </h2>
 
                 {/* Main Title with Typing Effect */}
@@ -93,23 +97,27 @@ export default function Hero() {
                 </div>
 
                 {/* Description */}
-                <p className="hero-reveal font-body text-gray-400 text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed mb-12 font-light">
-                    Building stronger humans through disciplined training and expert guidance.
-                </p>
+                <div className="mb-12">
+                    <TextReveal className="font-body text-gray-400 text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed font-light" delay={0.5}>
+                        Building stronger humans through disciplined training and expert guidance.
+                    </TextReveal>
+                </div>
 
                 {/* CTA Button */}
                 <div className="hero-reveal">
-                    <a
-                        href="#biometrics"
-                        className="group relative inline-flex items-center gap-4 bg-white text-black font-display font-bold text-lg px-8 py-4 rounded-full overflow-hidden hover:bg-primary transition-all duration-300"
-                    >
-                        <span className="relative z-10">START YOUR JOURNEY</span>
-                        <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                            <span className="material-symbols-outlined text-white text-sm group-hover:rotate-45 transition-transform duration-300">
-                                arrow_downward
-                            </span>
-                        </div>
-                    </a>
+                    <MagneticButton strength={40}>
+                        <a
+                            href="#biometrics"
+                            className="group relative inline-flex items-center gap-4 bg-white text-black font-display font-bold text-lg px-8 py-4 rounded-full overflow-hidden hover:bg-gray-100 transition-all duration-300"
+                        >
+                            <span className="relative z-10">START YOUR JOURNEY</span>
+                            <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                                <span className="material-symbols-outlined text-white text-sm group-hover:rotate-45 transition-transform duration-300">
+                                    arrow_downward
+                                </span>
+                            </div>
+                        </a>
+                    </MagneticButton>
                 </div>
             </div>
         </section >
