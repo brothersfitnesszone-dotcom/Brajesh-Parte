@@ -22,6 +22,7 @@ export default function Hero() {
             .catch(console.error);
 
         const ctx = gsap.context(() => {
+            const isTouch = ScrollTrigger.isTouch;
             const tl = gsap.timeline();
 
             // Initial Reveal
@@ -84,7 +85,7 @@ export default function Hero() {
                 <div className="h-20 md:h-32 flex items-center justify-center mb-8">
                     <h1
                         ref={titleRef}
-                        className="hero-reveal font-display font-bold text-6xl sm:text-7xl md:text-9xl leading-[0.9] text-white tracking-tighter"
+                        className="hero-reveal font-display font-bold text-6xl sm:text-7xl md:text-9xl leading-[0.9] text-white tracking-tighter gpu-accelerated"
                     >
                         <span className="typing-text"></span>
                         <span className="animate-blink">|</span>
@@ -111,11 +112,6 @@ export default function Hero() {
                     </a>
                 </div>
             </div>
-
-            {/* Ambient Noise/Grain (Optional CSS override) */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay"
-                style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
-            />
-        </section>
+        </section >
     );
 }

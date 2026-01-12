@@ -29,9 +29,10 @@ export default function Navbar() {
             {/* Top Navigation Bar */}
             <nav
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || mobileMenuOpen
-                    ? "bg-black/50 backdrop-blur-xl border-b border-white/5 py-4 shadow-2xl"
+                    ? "bg-black/50 border-b border-white/5 py-4 shadow-2xl"
                     : "bg-transparent py-6"
                     }`}
+                style={{ backdropFilter: scrolled || mobileMenuOpen ? "blur(var(--glass-blur))" : "none" }}
             >
                 <div className="max-w-7xl mx-auto px-6 md:px-20 flex items-center justify-between">
                     {/* Logo Section */}
