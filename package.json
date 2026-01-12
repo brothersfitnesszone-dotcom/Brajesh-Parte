@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@studio-freight/lenis": "^1.0.42",
     "@supabase/supabase-js": "^2.90.1",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.6.0",

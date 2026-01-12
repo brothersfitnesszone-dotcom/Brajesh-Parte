@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -59,7 +58,6 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${inter.variable} font-body bg-[#050505] text-white selection:bg-primary selection:text-black`}
       >
-        <SmoothScroll />
         <div className="grain-overlay" aria-hidden="true" />
 
         {/* Children */}
