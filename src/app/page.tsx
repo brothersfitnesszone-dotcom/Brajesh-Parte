@@ -7,11 +7,11 @@ import Footer from "@/components/public/Footer";
 
 export default function Home() {
   return (
-    <div className="relative flex min-h-screen overflow-hidden">
+    <div className="relative min-h-screen bg-[#050505] text-white">
       <Navbar />
 
       {/* Main Content Area */}
-      <main className="flex-1 h-full overflow-y-auto overflow-x-hidden scroll-smooth relative z-10 md:ml-20">
+      <main className="relative z-10 w-full overflow-hidden">
         <Hero />
         <Biometrics />
         <TrainingProtocol />

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import TextReveal from "@/components/ui/TextReveal";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -94,16 +96,15 @@ export default function TrainingProtocol() {
                 <div className="lg:w-1/2 fade-in-up">
                     <div className="flex items-center gap-4 mb-6">
                         <div className="w-12 h-[1px] bg-primary" />
-                        <h2 className="text-primary font-mono text-xs tracking-[0.3em] uppercase">
+                        <h2 className="text-primary font-mono text-[10px] tracking-luxury uppercase">
                             MY PHILOSOPHY
                         </h2>
                     </div>
 
-                    <h3 className="font-display font-bold text-4xl md:text-6xl text-white mb-10 leading-tight">
-                        BUILDING <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
-                            STRONGER HUMANS
-                        </span>
+                    <h3 className="mb-10">
+                        <TextReveal className="font-display font-bold text-4xl md:text-6xl text-white leading-tight">
+                            BUILDING STRONGER HUMANS
+                        </TextReveal>
                     </h3>
 
                     <div className="flex flex-col gap-8 text-gray-400 text-lg md:text-xl font-light leading-relaxed">
@@ -116,44 +117,47 @@ export default function TrainingProtocol() {
                         </div>
                     </div>
 
-                    <a
-                        href="#contact"
-                        className="group inline-flex items-center gap-3 mt-12 bg-white text-black font-display font-bold px-8 py-4 rounded-full hover:bg-primary transition-all duration-300"
-                    >
-                        <span>START YOUR JOURNEY</span>
-                        <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                    </a>
+                    <MagneticButton strength={25} className="mt-12">
+                        <a
+                            href="#contact"
+                            className="group inline-flex items-center gap-3 bg-white text-black font-display font-bold px-8 py-4 rounded-full hover:bg-primary transition-all duration-300"
+                        >
+                            <span>START YOUR JOURNEY</span>
+                            <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                    </MagneticButton>
                 </div>
 
                 {/* Philosophy Cards */}
                 <div className="lg:w-1/2 flex flex-col gap-6 w-full">
                     {philosophyItems.map((item, index) => (
-                        <div
-                            key={item.title}
-                            className="fade-in-up group relative p-8 rounded-2xl bg-white/[0.03] border border-white/5 backdrop-blur-sm hover:bg-white/[0.06] hover:border-white/20 transition-all duration-500 overflow-hidden"
-                        >
-                            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                                <span className="material-symbols-outlined text-8xl scale-150 rotate-[-15deg]">
-                                    {item.icon}
-                                </span>
-                            </div>
-
-                            <div className="relative z-10 flex gap-6 items-start">
-                                <div className={`w-14 h-14 flex-shrink-0 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white group-hover:scale-110 transition-transform duration-500`}>
-                                    <span className="material-symbols-outlined text-3xl">
+                        <MagneticButton key={item.title} strength={10} className="w-full">
+                            <div
+                                className="fade-in-up group relative p-8 glass-panel hover:bg-white/[0.06] transition-all duration-500 overflow-hidden w-full"
+                            >
+                                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                                    <span className="material-symbols-outlined text-8xl scale-150 rotate-[-15deg]">
                                         {item.icon}
                                     </span>
                                 </div>
-                                <div>
-                                    <h4 className="font-display font-bold text-xl text-white mb-3 tracking-wide">
-                                        {item.title}
-                                    </h4>
-                                    <p className="text-gray-400 text-sm leading-relaxed font-light">
-                                        {item.description}
-                                    </p>
+
+                                <div className="relative z-10 flex gap-6 items-start text-left">
+                                    <div className={`w-14 h-14 flex-shrink-0 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white group-hover:scale-110 transition-transform duration-500`}>
+                                        <span className="material-symbols-outlined text-3xl">
+                                            {item.icon}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-display font-bold text-xl text-white mb-3 tracking-wide">
+                                            {item.title}
+                                        </h4>
+                                        <p className="text-gray-400 text-sm leading-relaxed font-light">
+                                            {item.description}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </MagneticButton>
                     ))}
                 </div>
             </div>

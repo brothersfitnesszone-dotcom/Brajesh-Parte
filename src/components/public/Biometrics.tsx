@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import TextReveal from "@/components/ui/TextReveal";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -91,9 +93,9 @@ export default function Biometrics() {
         >
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-20">
-                    <h2 className="font-display text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+                    <TextReveal className="font-display text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
                         MY STATS
-                    </h2>
+                    </TextReveal>
                     <div className="h-1 w-24 bg-white/20 mx-auto rounded-full overflow-hidden">
                         <div className="h-full w-1/2 bg-white animate-pulse-slow" />
                     </div>
@@ -101,29 +103,30 @@ export default function Biometrics() {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className="stat-card relative bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-2xl p-8 text-center hover:bg-white/[0.06] hover:border-white/10 transition-all duration-500 group overflow-hidden"
-                        >
-                            <div className="relative z-10">
-                                <div className="flex justify-center mb-6">
-                                    <span className={`material-symbols-outlined text-4xl text-gray-600 group-hover:text-white transition-colors duration-300`}>
-                                        {stat.icon}
-                                    </span>
+                        <MagneticButton key={stat.label} strength={15}>
+                            <div
+                                className="stat-card relative glass-panel p-8 text-center hover:bg-white/[0.06] transition-all duration-500 group overflow-hidden h-full"
+                            >
+                                <div className="relative z-10">
+                                    <div className="flex justify-center mb-6">
+                                        <span className={`material-symbols-outlined text-4xl text-gray-600 group-hover:text-white transition-colors duration-300`}>
+                                            {stat.icon}
+                                        </span>
+                                    </div>
+
+                                    <div className="font-display font-bold text-4xl md:text-5xl text-white mb-3 tracking-tight group-hover:scale-110 transition-transform duration-500">
+                                        {stat.value}
+                                    </div>
+
+                                    <div className="font-display font-medium text-[10px] text-gray-500 uppercase tracking-luxury">
+                                        {stat.label} {stat.unit !== "" && `/ ${stat.unit}`}
+                                    </div>
                                 </div>
 
-                                <div className="font-display font-bold text-4xl md:text-5xl text-white mb-3 tracking-tight group-hover:scale-110 transition-transform duration-500">
-                                    {stat.value}
-                                </div>
-
-                                <div className="font-display font-medium text-xs text-gray-500 uppercase tracking-widest">
-                                    {stat.label} {stat.unit !== "" && `/ ${stat.unit}`}
-                                </div>
+                                {/* Hover Glow Effect */}
+                                <div className={`absolute inset-0 bg-gradient-to-tr from-${stat.color === 'primary' ? 'cyan-500' : 'purple-500'}/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                             </div>
-
-                            {/* Hover Glow Effect */}
-                            <div className={`absolute inset-0 bg-gradient-to-tr from-${stat.color === 'primary' ? 'cyan-500' : 'purple-500'}/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                        </div>
+                        </MagneticButton>
                     ))}
                 </div>
             </div>

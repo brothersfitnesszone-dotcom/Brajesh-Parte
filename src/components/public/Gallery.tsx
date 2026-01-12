@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import TextReveal from "@/components/ui/TextReveal";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -141,9 +143,9 @@ export default function Gallery() {
                 <div className="max-w-7xl mx-auto relative z-20">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                         <div>
-                            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">
+                            <TextReveal className="font-display text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">
                                 TRANSFORMATION GALLERY
-                            </h2>
+                            </TextReveal>
                             <div className="h-1 w-20 bg-primary rounded-full mb-4" />
                             <p className="font-body text-gray-400 max-w-md text-sm md:text-base">
                                 Real people. Real results. A collection of physique transformations and dedication.
@@ -151,24 +153,28 @@ export default function Gallery() {
                         </div>
 
                         <div className="flex gap-2">
-                            <button
-                                onClick={() => setViewMode("grid")}
-                                className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 ${viewMode === "grid"
-                                    ? "bg-white text-black border-white"
-                                    : "border-white/20 text-gray-400 hover:border-white hover:text-white"
-                                    }`}
-                            >
-                                <span className="material-symbols-outlined">grid_view</span>
-                            </button>
-                            <button
-                                onClick={() => setViewMode("list")}
-                                className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 ${viewMode === "list"
-                                    ? "bg-white text-black border-white"
-                                    : "border-white/20 text-gray-400 hover:border-white hover:text-white"
-                                    }`}
-                            >
-                                <span className="material-symbols-outlined">view_list</span>
-                            </button>
+                            <MagneticButton strength={15}>
+                                <button
+                                    onClick={() => setViewMode("grid")}
+                                    className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 ${viewMode === "grid"
+                                        ? "bg-white text-black border-white"
+                                        : "border-white/20 text-gray-400 hover:border-white hover:text-white"
+                                        }`}
+                                >
+                                    <span className="material-symbols-outlined">grid_view</span>
+                                </button>
+                            </MagneticButton>
+                            <MagneticButton strength={15}>
+                                <button
+                                    onClick={() => setViewMode("list")}
+                                    className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 ${viewMode === "list"
+                                        ? "bg-white text-black border-white"
+                                        : "border-white/20 text-gray-400 hover:border-white hover:text-white"
+                                        }`}
+                                >
+                                    <span className="material-symbols-outlined">view_list</span>
+                                </button>
+                            </MagneticButton>
                         </div>
                     </div>
 
